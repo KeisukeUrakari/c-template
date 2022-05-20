@@ -1,0 +1,90 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cmake",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "args": [
+                "--build", "src"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": ["cmake"]
+        },
+        {
+            "label": "build-test",
+            "type": "shell",
+            "command": "cmake",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "args": [
+                "--build", "test"
+            ],
+            "group": {
+                "kind": "build",
+            },
+            "dependsOn": ["cmake"]
+        },
+        {
+            "label": "build-lib",
+            "type": "shell",
+            "command": "cmake",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "args": [
+                "--build", "lib"
+            ],
+            "group": {
+                "kind": "build",
+            },
+            "dependsOn": ["cmake"]
+        },
+        {
+            "label": "cmake",
+            "type": "shell",
+            "command": "cmake",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "args": [
+                ".."
+            ],
+            "dependsOn": ["mkdir"]
+        },
+        {
+            "label": "mkdir",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p", "-v", "${workspaceFolder}/build/src", "${workspaceFolder}/build/test"
+            ]
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "clean"
+            ]
+        }
+    ]
+}
